@@ -38,4 +38,17 @@ git config --global color.diff.old        "red bold"
 git config --global color.diff.new        "green bold"
 git config --global color.diff.whitespace "red reverse"
 
+# fzf and ripgrep
+
+# # --files: List files that would be searched but do not search
+# # --no-ignore: Do not respect .gitignore, etc...
+# # --hidden: Search hidden files and folders
+# # --follow: Follow symlinks
+# # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+# Aliases
+
+alias gcz='git cz'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
