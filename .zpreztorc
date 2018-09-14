@@ -1,0 +1,19 @@
+zstyle ':prezto:load' pmodule \
+  'command-not-found' \
+  'docker' \
+  'environment' \
+  'terminal' \
+  'homebrew' \
+  'history' \
+  'spectrum' \
+  'utility' \
+  'ssh' \
+  'completion' \
+  'homebrew' \
+  'osx' \
+  'git' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+  'prompt'
+
+zstyle ':prezto:module:prompt' theme 'sorin'
