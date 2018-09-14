@@ -1,6 +1,4 @@
-" Plugins (vim-plug)
-
-" Auto-Install vim-plug
+" This auto-install VimPlug if it DNE
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -8,67 +6,66 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Directory for vim-plug plugins
-call plug#begin('~/.vim/plug-plugins')
+" Vim Plugins (VimPlug)
 
-Plug 'tpope/vim-sensible'
+call plug#begin()
 
-" Functionality
-
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'scrooloose/nerdtree'
-
-" Language
-
-Plug 'pangloss/vim-javascript'
-Plug 'groenewege/vim-less'
-
-" Customization
-
-Plug 'morhetz/gruvbox'
-Plug 'bling/vim-airline'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'w0rp/ale'
+Plug 'valloric/youcompleteme'
+Plug 'tenfyzhong/CompleteParameter.vim'
+Plug 'raimondi/delimitmate'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
-" Settings
+" Vim Settings
 
-set term=xterm-256color
-set updatetime=250
-set background=dark
+" Force True Color (for TMUX)
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
-set guifont=Inconsolata
+
+set background=dark
+set backspace=indent,eol,start
+colorscheme hybrid_reverse
+
+" Clear sign column highlighting
+highlight clear SignColumn
+
+" Line Numbers
 set nu
 
-colorscheme gruvbox
+" Tabs
+set ts=2
+set sw=2
+set expandtab
 
-let g:airline_theme='gruvbox'
-let g:quantum_italics=1
+syntax on
 
-" GitGutter
+" Plugin Settings
 
-set signcolumn=yes
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+let g:airline_theme = "wombat"
+let g:tmuxline_powerline_separators = 0
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ycm_add_preview_to_completeopt = 0
+let g:complete_parameter_log_level = 1
 
-" CtrlP
-
-let g:ctrlp_dont_split = 'nerdtree'
-
-" Key Mappings
-
-map <C-n> :NERDTreeToggle<CR>
-
-" Language Settings
-
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=119
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
-
-set t_ut=
+" VimComplete Bindings
+inoremap <silent><expr> ( complete_parameter#pre_complete("()")
+smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
