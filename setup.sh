@@ -10,6 +10,7 @@ brew install wget
 brew install lnav
 brew install loadtest
 brew install coreutils
+brew install docker
 brew install python3
 brew install go
 brew install node
@@ -39,7 +40,7 @@ brew install lastpass-cli --with-pinentry
 
 # Install global NPM packages
 yarn global add commitizen
-yarn add global cz-conventional-changelog
+yarn global add cz-conventional-changelog
 
 # Setup zprezto
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
