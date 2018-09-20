@@ -11,16 +11,11 @@ endif
 call plug#begin()
 
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 Plug 'edkolev/tmuxline.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-commentary'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'w0rp/ale'
-Plug 'valloric/youcompleteme'
-Plug 'tenfyzhong/CompleteParameter.vim'
-Plug 'raimondi/delimitmate'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -39,6 +34,8 @@ colorscheme hybrid_reverse
 
 " Clear sign column highlighting
 highlight clear SignColumn
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
 
 " Line Numbers
 set nu
@@ -48,24 +45,45 @@ set ts=2
 set sw=2
 set expandtab
 
+set completeopt-=preview
+
+set nocursorcolumn
+set nocursorline
+set norelativenumber
+set laststatus=2
+
+syntax sync minlines=256
 syntax on
 
 " Plugin Settings
 
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
-let g:airline_theme = "wombat"
+
 let g:tmuxline_powerline_separators = 0
+
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
-let g:ale_sign_column_always = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ycm_add_preview_to_completeopt = 0
-let g:complete_parameter_log_level = 1
 
-" VimComplete Bindings
-inoremap <silent><expr> ( complete_parameter#pre_complete("()")
-smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+let g:ale_cache_executable_check_failures = 1
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }

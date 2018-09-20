@@ -7,12 +7,21 @@ brew update
 
 # Install core packages
 echo 'Installing core packages...'
+brew install bash
 brew install zsh
 brew install htop
 brew install wget
+brew install neovim
 brew install lnav
 brew install loadtest
 brew install coreutils
+brew install findutils
+brew install gnu-tar
+brew install gnu-sed
+brew install gawk
+brew install gnutls
+brew install gnu-indent
+brew install gnu-getopt
 brew install docker
 brew install python3
 brew install go
@@ -20,17 +29,22 @@ brew install node
 brew install yarn
 brew install vim
 brew install tmux
+brew install reattach-to-user-namespace
 brew install hub
 brew install go-jira
 brew install diff-so-fancy
 brew install fzf
+brew install jq
 brew install ripgrep
 brew install httpie
+
+brew tap moncho/dry
+brew install dry
 
 brew tap-pin dbcli/tap
 brew install mycli
 brew install pgcli
-echo 'Complete'
+echo 'Complete!'
 
 # Install macOS packages
 echo 'Installing macOS packages...'
