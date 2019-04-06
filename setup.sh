@@ -1,7 +1,6 @@
 # Setup Homebrew
 echo 'Installing HomeBrew...'
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-echo 'Complete'
 
 brew update
 
@@ -11,7 +10,7 @@ brew install bash
 brew install zsh
 brew install htop
 brew install wget
-brew install neovim
+brew install vim
 brew install lnav
 brew install loadtest
 brew install coreutils
@@ -62,15 +61,6 @@ echo 'Complete!'
 echo 'Installing global NPM packages...'
 yarn global add commitizen
 yarn global add cz-conventional-changelog
-echo 'Complete!'
-
-# Setup zprezto
-echo 'Installing zprezto...'
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
 echo 'Complete!'
 
 # Make ZSH default shell
