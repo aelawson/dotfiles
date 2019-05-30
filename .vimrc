@@ -10,34 +10,32 @@ endif
 
 call plug#begin()
 
+Plug 'w0rp/ale'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
 Plug 'ayu-theme/ayu-vim'
 Plug 'Yggdroot/indentLine'
-Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-Plug 'rstacruz/vim-closer'
-Plug 'w0rp/ale'
+Plug 'Raimondi/delimitMate'
+Plug 'djoshea/vim-autoread'
+Plug 'craigemery/vim-autotag'
+Plug 'justinmk/vim-sneak'
+
+Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
+
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
-Plug 'fatih/vim-go'
+Plug 'dirn/Stone.vim'
 
 call plug#end()
 
 " Vim Settings
 set laststatus=2
-
-" Force True Color (for TMUX)
-" let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
-
 set background=dark
 set backspace=indent,eol,start
-let ayucolor="dark"
 colorscheme ayu
 
 " Clear sign column highlighting
@@ -47,6 +45,8 @@ highlight clear ALEWarningSign
 " Line Numbers
 set nu
 set cursorline
+set signcolumn=yes
+set nocursorline
 
 " Tabs
 set tabstop=2       " The width of a TAB is set to 4.
@@ -59,10 +59,10 @@ set expandtab       " Expand TABs to spaces.et autoindent
 
 set completeopt-=preview
 set clipboard=unnamed
-set signcolumn=yes
-set nocursorline
+set nobackup noswapfile
+set incsearch
+set tags=./tags;,tags;
 set cc=100
-set noshowmode
 
 syntax sync minlines=256
 syntax on
@@ -71,11 +71,8 @@ syntax on
 set diffopt+=vertical
 
 " Plugin Settings
-
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
-
-let g:tmuxline_powerline_separators = 0
 
 " ALE Settings
 let g:ale_cache_executable_check_failures = 1
@@ -84,37 +81,24 @@ let g:ale_lint_on_filetype_changed = 0
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
 
-let g:lightline = {
-      \ 'colorscheme': 'one'
-      \ }
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-let g:lightline.component_type = {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
-      \ }
-let g:lightline.active = {
-      \     'left': [[ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ]],
-      \     'right': [['lineinfo'], ['percent'], ['filetype'], ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]]
-      \ }
-let g:lightline.component_function = {
-      \     'gitbranch': 'fugitive#head'
-      \ }
+let g:autotagTagsFile="./tags"
 
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
+let g:sneak#label = 1
+let g:sneak#s_next = 1
+
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save = 1
 
 " Language Options
-let g:go_highlight_trailing_whitespace_error=0
+let g:go_highlight_trailing_whitespace_error = 0
 
-" Timestamps
+" Bindings
 nnoremap <leader>t <esc>:call TimeStamp()<CR>
+nnoremap <C-p> :Files<Cr>
+nnoremap <C-I> :Tags<Cr>
+nnoremap <C-_> :Buffers<Cr>
+
+" Functions
 function! TimeStamp()
      let l:current_time = strftime("%H:%M:%S")
      execute "normal! 0i\<SPACE>\<ESC>0dwi\
