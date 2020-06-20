@@ -20,7 +20,7 @@ git config --global init.templatedir '~/.git_template'
 export GOPATH=$HOME/dev/go:$HOME/dev/server/go
 export PATH=$PATH:/user/local/go/bin:~/dev/go/bin:~/dev/server/go/bin:/usr/local/Cellar/node/14.2.0/bin
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --no-messages --follow --glob '!.git/*'"
 export FZF_DEFAULT_OPTS="--preview-window='right:60%'"
 
