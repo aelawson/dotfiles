@@ -1,15 +1,40 @@
 {
-  "git.enableGlobalStatus": true,
-  "git.enableGutters": true,
-  "git.realtimeGutters": true,
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "disableWorkspaceFolders": true,
-      "filetypes": ["go"]
-    }
-  },
-  "list.source.grep.command": "rg",
-  "list.source.grep.args": ["--hidden", "--color", "always"]
+	"coc.preferences.colorSupport": true,
+	"coc.preferences.formatOnSaveFiletypes": ["typescriptreact", "typescript", "javascript"],
+  
+  "emmet.includeLanguages": {"typescript": "typescriptreact"},
+
+	"go.enable": true,
+  "go.goplsPath": "gopls",
+	"go.goplsOptions": {
+		"completeUnimported": true,
+		"staticcheck": true
+	},
+  "go.goplsArgs": [
+    "-remote=auto"
+  ],
+
+	"highlight.colors.enable": true,
+	"highlight.document.enable": false,
+
+	"tsserver.enable": true,
+	"tsserver.formatOnType": false,
+	"tsserver.enableJavascript": true,
+
+	"typescript.validate.enable": true,
+	"typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+	"typescript.suggest.completeFunctionCalls": true,
+	"typescript.suggest.paths": true,
+	"typescript.suggest.enabled": true,
+	"typescript.suggest.autoImports": true,
+	"typescript.updateImportsOnFileMove.enable": true,
+	
+	"tslint.autoFixOnSave": true,
+	"tslint.alwaysShowRuleFailuresAsWarnings": false,
+
+	"prettier.requireConfig": false,
+	"prettier.tslintIntegration": true,
+	"prettier.eslintIntegration": true,
+	"prettier.stylelintIntegration": false,
+	"prettier.statusItemText": "Prettier"
 }
