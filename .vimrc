@@ -9,81 +9,108 @@ endif
 " Vim Plugins (VimPlug)
 
 call plug#begin()
-
-Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
-Plug 'edkolev/tmuxline.vim'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'w0rp/ale'
+Plug 'tpope/vim-commentary'
+Plug 'easymotion/vim-easymotion'
+
+Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'chr4/nginx.vim'
+Plug 'dirn/Stone.vim'
+
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+
+Plug 'ayu-theme/ayu-vim'
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
 " Vim Settings
-
-" Force True Color (for TMUX)
-let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set encoding=UTF-8
+set laststatus=2
 set termguicolors
-
 set background=dark
-set backspace=indent,eol,start
-colorscheme hybrid_reverse
+set guifont=FiraCode_Nerd_Font:h12
+colorscheme ayu
+let ayucolor="mirage"
 
-" Clear sign column highlighting
-highlight clear SignColumn
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-
-" Line Numbers
+" Lines and Columns
 set nu
-
-" Tabs
-set ts=2
-set sw=2
-set expandtab
+set cursorline
+set signcolumn=yes
+set nocursorline
+set noshowcmd
+set noshowmode
 
 set completeopt-=preview
-
-set nocursorcolumn
-set nocursorline
-set norelativenumber
-set laststatus=2
+set clipboard=unnamed
+set nobackup noswapfile
+set incsearch
+set updatetime=300
+set nottimeout
 
 syntax sync minlines=256
 syntax on
 
-" Plugin Settings
+" Diff splitting
+set diffopt+=vertical
 
+au BufNewFile,BufRead *.ts setlocal filetype=typescript
+au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+
+source ~/.vim/coc.vim
+source ~/.vim/lightline.vim
+source ~/.vim/bindings.vim
+
+" Plugin Settings
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 
-let g:tmuxline_powerline_separators = 0
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save = 1
 
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2
+" Language Options
+let g:go_gopls_enabled = 0
+let g:go_code_completion_enabled = 0
+let g:go_metalinter_autosave = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_gopls_staticcheck = 0
+let g:go_def_mapping_enabled = 0
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_auto_sameids = 0
 
-let g:ale_cache_executable_check_failures = 1
-let g:ale_sign_column_always = 1
-let g:ale_lint_on_filetype_changed = 0
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'never'
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_addtags_transform = "camelcase"
 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-let g:lightline.component_type = {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
-      \ }
-let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+" Indents
+filetype plugin indent on
+" On pressing tab, insert 2 spaces
+set expandtab
+" show existing tab with 2 spaces width
+set tabstop=2
+set softtabstop=2
+" when indenting with '>', use 2 spaces width
+set shiftwidth=2
+
+let g:pyindent_open_paren = 'shiftwidth() * 2'
+let g:pyindent_nested_paren = 'shiftwidth()'
+let g:pyindent_continue = 'shiftwidth() * 2'
+
+" EasyMotion
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
