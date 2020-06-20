@@ -1,0 +1,15 @@
+{
+  "git.enableGlobalStatus": true,
+  "git.enableGutters": true,
+  "git.realtimeGutters": true,
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "disableWorkspaceFolders": true,
+      "filetypes": ["go"]
+    }
+  },
+  "list.source.grep.command": "rg",
+  "list.source.grep.args": ["--hidden", "--color", "always"]
+}
