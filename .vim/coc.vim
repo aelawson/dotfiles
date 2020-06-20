@@ -123,3 +123,15 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 let g:coc_snippet_next = '<C-j>'
 let g:coc_snippet_prev = '<C-k>'
+
+let g:coc_global_extensions = [
+      \   'coc-css',
+      \   'coc-emmet',
+      \   'coc-go',
+      \   'coc-html',
+      \   'coc-json',
+      \   'coc-python',
+      \   'coc-rls',
+      \   'coc-tsserver',
+      \   'coc-yaml',
+      \ ]
