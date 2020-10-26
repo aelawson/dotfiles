@@ -125,6 +125,7 @@ let g:coc_snippet_next = '<C-j>'
 let g:coc_snippet_prev = '<C-k>'
 
 let g:coc_global_extensions = [
+      \   'coc-git',
       \   'coc-css',
       \   'coc-emmet',
       \   'coc-go',
@@ -134,4 +135,6 @@ let g:coc_global_extensions = [
       \   'coc-rls',
       \   'coc-tsserver',
       \   'coc-yaml',
+      \   'coc-prettier'
+      \   'coc-omnisharp'
       \ ]

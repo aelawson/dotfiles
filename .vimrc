@@ -13,6 +13,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdtree'
 
 Plug 'fatih/vim-go'
 Plug 'leafgarland/typescript-vim'
@@ -114,3 +115,6 @@ map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
+
+" NerdTree
+map <C-e> :NERDTreeToggle<CR>
